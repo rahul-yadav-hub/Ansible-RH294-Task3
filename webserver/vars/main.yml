@@ -1,0 +1,6 @@
+---
+# vars file for webserver
+
+dir: "/var/www/html/"
+httpport: 80
+

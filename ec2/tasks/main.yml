@@ -1,0 +1,26 @@
+---
+# tasks file for ec2
+- name: include credentials file(vault)
+  include_vars: credentials.yml
+
+- name: provison ec2 instance for webserver
+  ec2:
+          image: "ami-04b1ddd35fd71475a"
+          instance_type: "t2.micro"
+          key_name: "ec2_os1"
+          wait: yes
+          count: 1
+          state: present
+          region: "ap-south-1"
+          vpc_subnet_id: "subnet-0f7a7f67"
+          group_id: "sg-0d301d8b5d2ad3990"
+          assign_public_ip: yes
+          instance_tags:
+            Name: Webserver
+          aws_access_key: "{{ user }}"
+          aws_secret_key: "{{ paswd }}"
+
+   
+- name: Updating the inventory or refreshing 
+  meta: refresh_inventory
+
