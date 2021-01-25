@@ -1,0 +1,18 @@
+#provisioning OS on AWS (3 webserver ,1 lb)
+
+- hosts: localhost
+  roles:
+    - role: ec2
+
+
+#configuring the webserver in it
+
+- hosts: tag_Name_Webserver
+  roles:
+    - role: webserver
+
+#configuring the load balancer
+
+- hosts: tag_Name_LoadBalancer
+  roles:
+    - role: loadbalancer
